@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Test CI</title>
+</head>
+<body>
+  <h2>Bài 1: kiểm tra số nguyên tố</h2>
+  <form>
+    <label for="a">Nhập a</label>
+    <input type="text" id="a" /><br />
+    <label for="b">Nhập b</label>
+    <input type="text" id="b" /><br />
+    <button type="button" id="checkPrimeBtn">Submit</button>
+  </form>
+  <script>const $checkPrimeBtn = document.querySelector("#checkPrimeBtn");
+    const $resultB1 = document.querySelector("#resultB1");
+    const $a = document.querySelector("#a");
+    const $b = document.querySelector("#b");
+    
+    const checkPrime = (n) => {
+        if (n < 2) {
+            return false;
+        }
+    
+        for (let i = 2; i < n / 2; i++) {
+            if (n % i == 0) {
+                return false;
+            }
+        }
+    
+        if (n == 4) {
+            return false;
+        }
+    
+        return true;
+    };
+    
+    $checkPrimeBtn.addEventListener("click", () => {
+        let a = $a.value;
+        let b = $b.value;
+        let html = ``;
+        console.log(a, b);
+    
+        if (isNaN(a) || isNaN(b)) {
+            $resultB1.innerHTML = "a và b phải là số nguyên";
+            return;
+        }
+    
+        if (a < b) {
+            for (let i = a; i <= b; i++) {
+                if (checkPrime(i)) {
+                    html += ` ${i} `;
+                }
+            }
+        } else {
+            $resultB1.innerHTML = "b phải lớn hơn a";
+            return;
+        }
+    
+        if (html) {
+            $resultB1.innerHTML = "Kết quả:" + html;
+        } else {
+            $resultB1.innerHTML = "Không có số nguyên tố";
+        }
+    });</script>
+  <div id="resultB1"></div>
+  <hr />
+
+  <h2>Bài 2: In hình tam giác</h2>
+  <div id="triangle"></div>
+  <script src="yellow.js"></script>
+</body>
+
+</html>
